@@ -1,6 +1,8 @@
 package com.pims.controls.user;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,10 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.pims.models.User;
 import com.pims.models.UserManager;
 
+import sun.rmi.server.Dispatcher;
+
 /**
  * 注册用的Servlet
  */
-@WebServlet("/register")
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public Register() {
@@ -31,6 +34,12 @@ public class Register extends HttpServlet {
 		UserManager manager = new UserManager();//生成用户管理类。
 		
 		manager.add(user);//利用用户管理类，保存用户。
+		
+		String info = "用户添加成功!";
+		request.setAttribute("info", info);
+		
+		RequestDispatcher dis = request.getRequestDispatcher("/user/success.jsp");
+		dis.forward(request, response);
 	}
 
 }

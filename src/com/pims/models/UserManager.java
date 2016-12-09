@@ -25,7 +25,7 @@ public class UserManager {
 	 * @param user
 	 */
 	public void add(User user){
-		String sql = "insert into user (name, password) values(?,?)";
+		String sql = "insert into user (username, password) values(?,?)";
 		conn = getConnection();
 		
 		try {

@@ -53,6 +53,8 @@ public class UserManager {
 	 */
 	public User findOne(Integer id){
 		return null;
+		
+		
 	}
 	
 	/**

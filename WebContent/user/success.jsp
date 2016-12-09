@@ -8,5 +8,6 @@
 </head>
 <body>
 <%=request.getAttribute("info")%>
+
 </body>
 </html>

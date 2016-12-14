@@ -6,10 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class FileManager {
 
+	private List<UserFile> files;
+	private UserFile file;
+	
 	private Connection conn; //数据库相关变量
 	private Statement stmt;
 	private ResultSet rs;
@@ -38,7 +43,34 @@ public class FileManager {
 	}
 	
 	public List<UserFile> findAll(){
-		return null;
+		conn = getConnection();
+		try {
+			stmt = conn.createStatement();
+			//执行查询
+			rs=stmt.executeQuery("select * from file");
+			
+			//声明一个列表变量files来放所有的文件
+			files = new ArrayList<UserFile>();
+			
+			while(rs.next()){
+				//每读一条数据就新生成一个UserFile
+				file = new UserFile();
+				//将每一条数据的值取出，放入刚才声明的files。
+				file.setId(rs.getInt("id"));
+				file.setName(rs.getString("name"));
+				file.setPath(rs.getString("path"));
+				files.add(file);
+			}
+			
+			rs.close();
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		//返回所有的文件
+		return files;
+
 	}
 	
 	public FileManager() {

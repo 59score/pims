@@ -54,10 +54,12 @@ public class UploadServlet extends HttpServlet {
          
         // 设置最大请求值 (包含文件和表单数据)
         upload.setSizeMax(MAX_REQUEST_SIZE);
- 
+  
         // 构造临时路径来存储上传的文件
         // 这个路径相对当前应用的目录
-        String uploadPath = "e:\\projects" + File.separator + UPLOAD_DIRECTORY;
+        String uploadPath = "e:\\projects\\pims\\WebContent\\images" 
+        					+ File.separator 
+        					+ UPLOAD_DIRECTORY;
        
          
         // 如果目录不存在则创建

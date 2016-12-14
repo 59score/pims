@@ -15,7 +15,9 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-@WebServlet("/fileUpload")
+import com.pims.models.FileManager;
+import com.pims.models.UserFile;
+
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -55,7 +57,7 @@ public class UploadServlet extends HttpServlet {
  
         // 构造临时路径来存储上传的文件
         // 这个路径相对当前应用的目录
-        String uploadPath = "e://projects" + File.separator + UPLOAD_DIRECTORY;
+        String uploadPath = "e:\\projects" + File.separator + UPLOAD_DIRECTORY;
        
          
         // 如果目录不存在则创建
@@ -76,6 +78,12 @@ public class UploadServlet extends HttpServlet {
                     if (!item.isFormField()) {
                         String fileName = new File(item.getName()).getName();
                         String filePath = uploadPath + File.separator + fileName;
+                        
+                        //将文件名称、路径保存在数据库
+                        UserFile userFile = new UserFile(fileName, filePath);
+                        FileManager manager = new FileManager();
+                        manager.add(userFile);
+                        
                         File storeFile = new File(filePath);
                         // 在控制台输出文件的上传路径
                         System.out.println(filePath);

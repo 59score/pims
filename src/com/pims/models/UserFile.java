@@ -1,13 +1,19 @@
 package com.pims.models;
 
-public class File {
+public class UserFile {
 
 	private Integer id;
 	private String name;
 	private String path;
 	
-	public File() {
+	public UserFile() {
 	}
+	
+	public UserFile(String name, String path) {
+		this.name = name;
+		this.path = path;
+	}
+
 
 	public Integer getId() {
 		return id;

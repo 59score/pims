@@ -8,4 +8,13 @@
     <servlet-name>register</servlet-name>
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>fileUpload</servlet-name>
+    <servlet-class>com.pims.controls.user.UploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>fileUpload</servlet-name>
+    <url-pattern>/fileUpload</url-pattern>
+  </servlet-mapping>
 </web-app>

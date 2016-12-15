@@ -10,7 +10,7 @@
 </head>
 <body>
 <c:forEach items="${files}" var="file">
-	<img width="100" src="http://localhost:8080/pims/images/upload/${file.name}" />
+	<img width="100" src="${file.path}" />
 </c:forEach>
 </body>
 </html>

@@ -57,7 +57,7 @@ public class UploadServlet extends HttpServlet {
   
         // 构造临时路径来存储上传的文件
         // 这个路径相对当前应用的目录
-        String uploadPath = "e:\\projects\\pims\\WebContent\\images" 
+        String uploadPath = "images" 
         					+ File.separator 
         					+ UPLOAD_DIRECTORY;
        
@@ -80,13 +80,14 @@ public class UploadServlet extends HttpServlet {
                     if (!item.isFormField()) {
                         String fileName = new File(item.getName()).getName();
                         String filePath = uploadPath + File.separator + fileName;
+                        String savePath = "e:\\projects\\pims\\WebContent\\" + filePath;
                         
                         //将文件名称、路径保存在数据库
                         UserFile userFile = new UserFile(fileName, filePath);
                         FileManager manager = new FileManager();
                         manager.add(userFile);
                         
-                        File storeFile = new File(filePath);
+                        File storeFile = new File(savePath);
                         // 在控制台输出文件的上传路径
                         System.out.println(filePath);
                         // 保存文件到硬盘
